@@ -19,7 +19,7 @@ This is how Cliff Walking is structured:
 - The grid is a 4x12 layout, with 48 states in total, labelled 0-47
 - The agent starts at state 36 and goal is state 47 as depicted below:
     
-    ![image.png](RL%20learning%20notes%20-%20SARSA%20and%20Q%20learning/image.png)
+    ![image.png](image.png)
     
 - States 37 to 46, the ones marked red in the figure above, are the cliff. Stepping on even one of them gives a big penalty of -100 to the agent, and resets the agent to the start without ending the episode, and I understood that the episode does not terminate if the agent steps on the cliff by playing around with the environment by hand.
 - There are 4 possible discrete actions the agent can take:
@@ -107,7 +107,7 @@ $\max_a Q(S_{t+1},a)$ means the largest Q-value across all actions available in 
 
 - I had set : α = 0.1, γ = 1, ε = 0.1, 5000 episodes, identical for both algorithms so the comparison is fair between SARSA and Q learning
 
-![sarsa_cliffwalking_learning_curve.png](RL%20learning%20notes%20-%20SARSA%20and%20Q%20learning/sarsa_cliffwalking_learning_curve.png)
+![sarsa_cliffwalking_learning_curve.png](sarsa_cliffwalking_learning_curve.png)
 
 - SARSA's episode length starts near 900 steps and falls steeply in the first ~200 episodes, then declines gradually before settling at roughly 15-25 steps by around episode 2000, with very little variance afterward.
 - The final learned policy looks like:
@@ -117,7 +117,7 @@ $\max_a Q(S_{t+1},a)$ means the largest Q-value across all actions available in 
 
 - This is a complete 16 step route that starts from 36 and ends at the terminal state 47 with no repeated states and no steps on the cliff, which means the agent learned to avoid high penalty cliff squares while finding a reasonably short path to the goal
 
-![qlearning_cliffwalking_learning_curve.png](RL%20learning%20notes%20-%20SARSA%20and%20Q%20learning/qlearning_cliffwalking_learning_curve.png)
+![qlearning_cliffwalking_learning_curve.png](qlearning_cliffwalking_learning_curve.png)
 
 - Q-learning's episode length starts near 1000 steps in the first episode, then falls sharply, reaching roughly 15-20 steps by around episode 300-500. After that the curve is essentially flat through episode 5000, with only small spikes from epsilon-greedy exploration.
 - Under identical hyperparameters (α = 0.1, γ = 1, ε = 0.1), Q-learning's curve flattens within a few hundred episodes, while SARSA's declines gradually and flattens around episode 2000.
